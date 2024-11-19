@@ -199,8 +199,6 @@ rm -r $TEMP
     # submit slurm files
     for slurm_ in glob.iglob(os.path.join(slurm_output_folder, '*.slurm')):
         subprocess.call(['sbatch', slurm_])
-    
-    print("Good Deadpool, Bad Deadpool")
        
     return None
 

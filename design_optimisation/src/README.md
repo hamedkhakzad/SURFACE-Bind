@@ -1,4 +1,4 @@
-## Source scripts for Running design optimisation using ProteinMPNN and AlphaFold2 on a computing cluster
+## Source scripts for running design optimisation using ProteinMPNN and AlphaFold2 on a computing cluster
 
   - find_hotspots.py: \
     This script parses a PDB file and determine the binder interface residues within a set distance cutoff from the               target (Default is set to 3.5Å). This script is necessary for running scaffold optimisation using ProteinMPNN.

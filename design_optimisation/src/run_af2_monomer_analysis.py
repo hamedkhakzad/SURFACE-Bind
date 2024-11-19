@@ -26,7 +26,7 @@ def create_parser():
     """
     parse = argparse.ArgumentParser()
     
-    parse.add_argument("--af_pred_folder",         type=str,   nargs=1,  required=True,  help="Path to folder containing AF2 predictions.")
+    parse.add_argument("--mpnn_folder",            type=str,   nargs=1,  required=True,  help="Path to folder containing MPNN run outputs.")
     parse.add_argument("--rs_models_dir",          type=str,   nargs=1,  required=True,  help="Path to the rosetta models directory.")
     parse.add_argument("--rs_model_binder_chain",  type=str,   nargs=1,  required=True,  help="Rosetta model binder chain id.")
     parse.add_argument("--af_model_binder_chain",  type=str,   nargs=1,  required=True,  help="AF2 model chain.")
@@ -216,7 +216,7 @@ def main():
 
     # Parse arguments
     args = parse_args(create_parser())
-    af2_monomer_pred_dir = args.af_pred_folder[0]
+    root_folder = args.mpnn_folder[0]
     rs_models_folder = args.rs_models_dir[0]
     rs_binder_chain = args.rs_model_binder_chain[0]
     af2_binder_chain = args.af_model_binder_chain[0]
@@ -226,6 +226,15 @@ def main():
     ##### path to the rosetta models
     rs_models_paths  = [f.strip() for f in glob.iglob(os.path.join(rs_models_folder, '*.pdb'))]
 
+    ##### path to the mpnn output analysis 
+    mpnn_output_analysis_dir = [f.strip() for f in glob.iglob(os.path.join(root_folder, '*')) if '_output_analysis' in f
+                                                                                              if os.path.isdir(f) ][0]
+    ##### path to the mpnn output score file
+    mpnn_sc = [f.strip() for f in glob.iglob(os.path.join(mpnn_output_analysis_dir,'*.csv')) if 'selected' in f][0]
+
+    ##### path to the af2 monomer predictions 
+    af2_monomer_pred_dir = [f.strip() for f in glob.iglob(os.path.join(mpnn_output_analysis_dir, '*')) if 'monomer_pred' in f
+                                                                                                       if os.path.isdir(f)][0]
     # parse AF2 prediction file paths
     json_paths  = [f for f in glob.iglob(os.path.join(af2_monomer_pred_dir, '*.json')) if 'scores' in f]
 
@@ -235,11 +244,11 @@ def main():
     os.makedirs(output, exist_ok=0)
 
     # make output for the RMSD files
-    rmsd_out = f'{output}/aligned_models/'
+    rmsd_out = os.path.join(output}, "aligned_models")
     os.makedirs(rmsd_out, exist_ok=0)
 
     # make dir for selected designs
-    sel_des_out = f'{output}/sel_designs/'
+    sel_des_out = os.path.join(output}, "sel_designs")
     os.makedirs(sel_des_out, exist_ok=0)
 
     ### Parse AF output and select best decoys ###
@@ -305,6 +314,11 @@ def main():
     # seperate the selected designs 
     for model in tqdm(df_merged01.af2_model, desc='Copying'):
         shutil.copy(f'{rmsd_out}/{model}.pdb', f'{sel_des_out}/{model}.pdb')
+
+    # load the MPNN info 
+    df_info = pd.read_csv(mpnn_sc, index_col=0).rename(columns={'design':'label'})
+    df_merged02 = pd.merge(left=df_info, right=df_merged01, on='label', how='inner')
+    df_merged02.to_csv(os.path.join(output, "af2_monomer_filtered_decoys_by_rmsd_info.csv")
         
     return None
 

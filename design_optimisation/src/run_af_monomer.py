@@ -75,19 +75,19 @@ def main():
     os.makedirs(output)
 
     # create folder for the fa files to submit to af2
-    af2_monomer_fa = f'{output}/af2_monomer_fa_files/'
+    af2_monomer_fa = os.path.join(output, "af2_monomer_fa_files")
     os.makedirs(af2_monomer_fa)
     
     # create af2 pred output folder
-    af2_monomer_pred = f'{output}/af2_monomer_pred/'
+    af2_monomer_pred = os.path.join(output, "af2_monomer_pred")
     os.makedirs(af2_monomer_pred)
     
     # create a folder for the slurm files
-    slurm_output_folder = f'{output}/af_monomer_slurms/'
+    slurm_output_folder = os.path.join(output, "af_monomer_slurms")
     os.makedirs(slurm_output_folder)
 
     # parse paths to fasta files
-    des_paths = [f for f in glob.iglob(os.path.join(results_folder, '*/seqs/*.fa'))]
+    des_paths = [f for f in glob.iglob(os.path.join(results_folder, "*", "seqs", "*.fa"))]
     print(f"{len(des_paths)} designs parsed!")
 
     # parse the fasta files
@@ -119,7 +119,7 @@ def main():
                 parse_dic['global_score'].append(float([h.strip() for h in header[i].split(',')][3].split('=')[-1]))
                 parse_dic['sequence_recovery'].append(float([h.strip() for h in header[i].split(',')][4].split('=')[-1]))
     df_parsed = pd.DataFrame(parse_dic)
-    df_parsed.to_csv(f'{output}/all_sol_mpnn_designs.csv')
+    df_parsed.to_csv(os.path.join(output, "all_sol_mpnn_designs.csv"))
 
     # drop duplicated sequences
     df_uniq = df_parsed.copy().sort_values(by='global_score').drop_duplicates(subset='sequence', keep='first').reset_index(drop=True)
@@ -139,7 +139,7 @@ def main():
         df_temp.reset_index(drop=True, inplace=True)
         vessel.append(df_temp.head(num_of_seqs))
     df_sel = pd.concat(vessel).reset_index(drop=True)
-    df_sel.to_csv(f'{output}/selected_sol_mpnn_designs.csv')
+    df_sel.to_csv(os.path.join(output, "selected_sol_mpnn_designs.csv"))
 
     # plot the scores
     plot_scores(df_parsed=df_parsed, df_sel=df_sel, output=output)

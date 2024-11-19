@@ -231,16 +231,16 @@ def main():
 
     #### Make output dirs ####
     # make output dir for analysis
-    output = os.path.abspath(f'{af2_monomer_pred_dir}/../af2_monomer_pred_analysis/')
-    os.makedirs(output, exist_ok=1)
+    output = os.path.abspath(os.path.join(af2_monomer_pred_dir, "..", "af2_monomer_pred_analysis"))
+    os.makedirs(output, exist_ok=0)
 
     # make output for the RMSD files
     rmsd_out = f'{output}/aligned_models/'
-    os.makedirs(rmsd_out, exist_ok=1)
+    os.makedirs(rmsd_out, exist_ok=0)
 
     # make dir for selected designs
     sel_des_out = f'{output}/sel_designs/'
-    os.makedirs(sel_des_out, exist_ok=1)
+    os.makedirs(sel_des_out, exist_ok=0)
 
     ### Parse AF output and select best decoys ###
     df_parsed = af2_json_parser(json_paths=json_paths, output=output)
@@ -269,7 +269,7 @@ def main():
     models_map = {}
     for rs in tqdm(rs_models_paths, desc='Mapping AF2 models to Rs models'):
         rs_name = os.path.basename(rs).replace('.pdb','')
-        af_correspondence = [a for a in sel_des_paths if rs_name == os.path.basename(a).split('_unrelaxed')[0]]
+        af_correspondence = [a for a in sel_des_paths if rs_name == os.path.basename(a).split('_mpnn')[0]]
         if len(af_correspondence) > 0:
             models_map[rs] = af_correspondence
 
@@ -289,24 +289,23 @@ def main():
                 rmsd_dic['binder_rmsd'].append(rmsd)
                 rmsd_dic['af2_model'].append(af_model_name)
     df_rmsd = pd.DataFrame(rmsd_dic)
-    df_rmsd.to_csv(f'{output}/af2_monomer_folded_decoys_rmsd.csv')
+    df_rmsd.to_csv(os.path.join(output, "af2_monomer_folded_decoys_rmsd.csv")
 
     # select promising sequences that folded correctly with CA RMSD <= 1.5
     df_sel02 = df_rmsd[(df_rmsd.binder_rmsd <= 1.5)].sort_values(by='binder_rmsd', ascending=1).reset_index(drop=True)
     df_sel02['label'] = df_sel02['af2_model'].apply(lambda x: f'>{x.split("_unrelaxed")[0]}')
     df_sel02.drop(columns=['design'], inplace=True)
-    df_sel02.to_csv(f'{output}/af2_monomer_filtered_decoys_by_rmsd.csv')
+    df_sel02.to_csv(os.path.join(output,"af2_monomer_filtered_decoys_by_rmsd.csv")
 
     # Add the binder RMSD information to the selected designs
     df_merged01 = pd.merge(left=df_sel01, right=df_sel02, on='label', how='inner')
     df_merged01.reset_index(drop=True, inplace=True)
-    df_merged01.to_csv(os.path.join(output, 'af_monomer_selection.csv'))
+    df_merged01.to_csv(os.path.join(output, "af_monomer_selection.csv"))
 
     # seperate the selected designs 
     for model in tqdm(df_merged01.af2_model, desc='Copying'):
         shutil.copy(f'{rmsd_out}/{model}.pdb', f'{sel_des_out}/{model}.pdb')
-
-    print("Good Deadpool, Bad Deadpool")
+        
     return None
 
 # Execute

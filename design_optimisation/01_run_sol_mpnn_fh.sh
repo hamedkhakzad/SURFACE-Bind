@@ -8,7 +8,7 @@ python /work/lpdi/users/asadek/scaffold_opt_project/scripts/src/run_sol_mpnn_opt
                                                                                     --path_to_conda {Path to source conda.sh} \
                                                                                     --path_to_env {Path to activate conda environment} \
                                                                                     --scripts_src_repo {Path to scripts src repo} \
-                                                                                    --binder_chain 'B' \
+                                                                                    --binder_chain {Binder Chain ID} \
                                                                                     --interface_threshold 3.5 \
                                                                                     --seqs_to_generate 25 \
                                                                                     --optimisation_strategy fixed_interface

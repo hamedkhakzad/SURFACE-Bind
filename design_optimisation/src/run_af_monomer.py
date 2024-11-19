@@ -227,7 +227,6 @@ printf $ELAPSED
         print("Removing uncompressed Sol MPNN input folder")
         os.system(f"rm -r {sol_mpnn_folder_path}")
     
-    print("Good Deadpool, Bad Deadpool")
     return None
 
 # Execute

@@ -36,7 +36,7 @@ def parse_args(parser):
     args = parser.parse_args()
     return args
 
-
+## 3.0 Execution
 def main():
     "Main execution point"
     
@@ -60,23 +60,23 @@ def main():
     rs_models_paths = [f.strip() for f in glob.iglob(os.path.join(rs_models_dir, '*.pdb'))]
     
     # make output folder 
-    output_folder = f"./sol_mpnn_{optimisation_strategy}"
+    output_folder = os.path.join(os.path.abspath("."), f"sol_mpnn_{optimisation_strategy}")
     os.makedirs(output_folder)
     
     # make sol mpnn input dir
-    sol_mpnn_input_dir = f"{output_folder}/sol_mpnn_input/"
+    sol_mpnn_input_dir = os.path.join(output_folder, "sol_mpnn_input")
     os.makedirs(sol_mpnn_input_dir)
     
     # make sol mpnn output dir
-    sol_mpnn_output_dir_root = f"{output_folder}/sol_mpnn_{optimisation_strategy}_output/"
+    sol_mpnn_output_dir_root = os.path.join(output_folder, f"sol_mpnn_{optimisation_strategy}_output")
     os.makedirs(sol_mpnn_output_dir_root)
     
     # create a folder to export slurm files
-    slurm_output_folder = f"{output_folder}/slurms/"
+    slurm_output_folder = os.path.join(output_folder, "slurms")
     os.makedirs(slurm_output_folder)
     
     # create output folder for temp_files
-    _temp = f"{output_folder}/_temp/"
+    _temp = os.path.join(output_folder, "_temp")
     os.makedirs(_temp)
     
     # prepare soluble mpnn input
@@ -84,13 +84,13 @@ def main():
         for rs_model01 in tqdm(rs_models_paths, desc='Preparing Sol MPNN input, making folders'):
             new_folder01 = f"{sol_mpnn_input_dir}/{os.path.basename(rs_model01).replace('.pdb','')}/"
             os.makedirs(new_folder01)
-            shutil.copy(rs_model01, f"{new_folder01}/{os.path.basename(rs_model01)}")   
+            shutil.copy(rs_model01, os.path.join(new_folder01, os.path.basename(rs_model01)))   
     else:
         for idx01 in range(0,len(rs_models_paths), 200):
             new_folder02 = f"{sol_mpnn_input_dir}/slice_{idx01:04}"
             os.makedirs(new_folder02)
             for element01 in rs_models_paths[idx01:idx01+200]:
-                shutil.copy(element01, f"{new_folder02}/{os.path.basename(element01)}")
+                shutil.copy(element01, os.path.join(new_folder02, os.path.basename(element01)))
             
     # get the design's path lists that will be passed to the pMPNN script
     pmpnn_input = [os.path.abspath(f.strip()) for f in glob.iglob(os.path.join(sol_mpnn_input_dir, '*'))]

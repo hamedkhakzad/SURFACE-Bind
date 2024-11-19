@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## This script is to be run on GPU cluster with with SLURM managment system
+## This script is to be run on a GPU cluster with with SLURM managment system
 ## This script will select the top 5 unique ProteinMPNN sequences/design based on the global score and submit the results to AF2 for monomer prediction using single sequence mode
 ## This script uses ColabFold for running the predictions
 

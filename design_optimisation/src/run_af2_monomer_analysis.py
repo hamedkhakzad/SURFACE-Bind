@@ -291,7 +291,6 @@ def main():
     for rs in tqdm(rs_models_paths, desc='Mapping AF2 models to Rs models'):
         rs_name = os.path.basename(rs).replace('.pdb','')
         af_correspondence = [a for a in sel_des_paths if rs_name == os.path.basename(a).split('_mpnn')[0].replace("x","_")]
-        print(af_correspondence, rs_name)
         if len(af_correspondence) > 0:
             models_map[rs] = af_correspondence
     assert len(models_map.keys()) != 0, "Model mapping failure"

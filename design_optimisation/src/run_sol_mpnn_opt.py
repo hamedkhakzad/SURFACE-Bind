@@ -15,15 +15,15 @@ def create_parser():
     """
     parse = argparse.ArgumentParser()
     
-    parse.add_argument("--rs_models_dir" ,         type=str,   nargs=1,  required=True,                                                   help="Path to folder containing rosetta models.")
-    parse.add_argument("--pmpnn_repo" ,            type=str,   nargs=1,  required=True,                                                   help="Path to ProteinMPNN repo.")
-    parse.add_argument("--scripts_src_repo" ,      type=str,   nargs=1,  required=False,                                                  help="Path to scripts src repo.")
-    parse.add_argument("--binder_chain" ,          type=str,   nargs=1,  required=True,                                                   help="Binder chain to design.")
-    parse.add_argument("--interface_threshold" ,   type=float, nargs=1,  required=False,                                                  help="Max distance for a res to be considered a hotspot, Default 3.5A.")
+    parse.add_argument("--rs_models_dir" ,         type=str,   nargs=1,  required=True,                                                   help="Path to folder containing rosetta designed models that will be input for optimisation.")
+    parse.add_argument("--pmpnn_repo" ,            type=str,   nargs=1,  required=True,                                                   help="Path to ProteinMPNN repository.")
+    parse.add_argument("--scripts_src_repo" ,      type=str,   nargs=1,  required=False,                                                  help="Path to scripts src folder.")
+    parse.add_argument("--binder_chain" ,          type=str,   nargs=1,  required=True,                                                   help="Binder chain ID to design.")
+    parse.add_argument("--interface_threshold" ,   type=float, nargs=1,  required=False,                                                  help="Distance threshold for a residue to be considered a hotspot,, Default 3.5A.")
     parse.add_argument("--seqs_to_generate" ,      type=int,   nargs=1,  required=True,                                                   help="Number of sequences to generate per design.")
     parse.add_argument("--path_to_conda" ,         type=str,   nargs=1,  required=True,                                                   help="Path to source conda.sh.")
     parse.add_argument("--path_to_env" ,           type=str,   nargs=1,  required=True,                                                   help="Path to activate conda environment.")
-    parse.add_argument("--optimisation_strategy",  type=str,   nargs=1,  required=True,  choices=['fixed_interface', 'design_interface'], help="Name of MPNN strategy to be analysed, ['fixed_interface', 'design_interface'].")
+    parse.add_argument("--optimisation_strategy",  type=str,   nargs=1,  required=True,  choices=['fixed_interface', 'design_interface'], help="Name of ProteinMPNN strategy to be used, ['fixed_interface', 'design_interface'].")
 
     return parse
 

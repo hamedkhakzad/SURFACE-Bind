@@ -26,10 +26,10 @@ def create_parser():
     """
     parse = argparse.ArgumentParser()
     
-    parse.add_argument("--mpnn_folder",            type=str,   nargs=1,  required=True,  help="Path to folder containing MPNN run outputs.")
-    parse.add_argument("--rs_models_dir",          type=str,   nargs=1,  required=True,  help="Path to the rosetta models directory.")
-    parse.add_argument("--rs_model_binder_chain",  type=str,   nargs=1,  required=True,  help="Rosetta model binder chain id.")
-    parse.add_argument("--af_model_binder_chain",  type=str,   nargs=1,  required=True,  help="AF2 model chain.")
+    parse.add_argument("--mpnn_folder",            type=str,   nargs=1,  required=True,  help="Path to ProteinMPNN run output folder.")
+    parse.add_argument("--rs_models_dir",          type=str,   nargs=1,  required=True,  help="Path to folder containing rosetta designed models.")
+    parse.add_argument("--rs_model_binder_chain",  type=str,   nargs=1,  required=True,  help="Rosetta model binder chain ID.")
+    parse.add_argument("--af_model_binder_chain",  type=str,   nargs=1,  required=True,  help="AlphaFold2 model chain ID.")
     return parse
 
 def parse_args(parser):

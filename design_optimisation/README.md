@@ -46,7 +46,7 @@
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 ## Run AlphaFold2 assessment of optimised sequences in-silico folding  
-*This step predicts the design alone in "single sequence" mode*
+*This step predicts the design alone in "single sequence" mode* \
 *Provided example script: 03_run_af_monomer.sh* \
 *Run on GPU cluster with SLURM managment system*
 

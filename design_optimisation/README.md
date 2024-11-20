@@ -46,7 +46,7 @@
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 ## Run AlphaFold2 assessment of optimised sequences in-silico folding  
-*This step predicts the design alone in "single sequence" mode* \
+*This step predicts the design sequence only in "single sequence" mode* \
 *Provided example script: 03_run_af_monomer.sh* \
 *Run on GPU cluster with SLURM managment system*
 
@@ -68,3 +68,5 @@
 - fasta_paths.list : File containing paths for FATSA files submitted for AlphaFold2 prediction.
 - {DATE}_pmpnn_scores.png (.svg) : Plotting ProteinMPNN scores for the optimised sequences, Selected sequences (Coloured), All sequences (Gray).
 
+-----------------------------------------------------------------------------------------------------------------------------------------
+## Filtering AlphaFold2 predictions

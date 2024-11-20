@@ -83,6 +83,8 @@ These parameters were kept, for modifying them, you need to alter them in the SL
 - rs_models_dir         : Path to folder containing rosetta designed models. (str)
 - rs_model_binder_chain : Rosetta model binder chain ID. (str)
 - af_model_binder_chain : AlphaFold2 model chain ID. (str)
+- pLDDT_thresh          : pLDDT threshold for filtering, Default 80.
+- RMSD_thresh           : C⍺ RMSD to model threshold for filtering, Default 1.5Å.
 
 **output folders:**
 - af2_monomer_pred_analysis : Folder containing the AlphaFold2 predictions analysis.
@@ -97,8 +99,5 @@ These parameters were kept, for modifying them, you need to alter them in the SL
 - af2_monomer_filtered_decoys_by_rmsd.csv      : File containing the C⍺ RMSD to model values for the AlphaFold2 models passing the C⍺ RMSD to model threshold.
 - af_monomer_selection.csv                     : File containing the ProteinMPNN, AlphaFold2 and sequence properties of passing designs.
 
-**remarks:** \
-pLDDT and C⍺ RMSD to model, modifications to the source script "run_af2_monomer_analysis.py" needs to be made in lines 263 and 304 respectively 
-
 -----------------------------------------------------------------------------------------------------------------------------------------
-  
+## IV. Interface quality assessment using AlphaFold2

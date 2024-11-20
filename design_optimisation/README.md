@@ -74,3 +74,28 @@ These parameters were kept, for modifying them, you need to alter them in the SL
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 ## Filtering AlphaFold2 predictions
+*This step filters the AlphaFold2 predictions based on pLDDT (Default >= 80) and C⍺ RMSD to model (Default <= 1.5)* \
+*Provided example script: 04_run_af_monomer_analysis.sh* \
+*Run on CPU cluster, inteactive*
+
+**Flags:**
+- mpnn_folder           : Path to ProteinMPNN run output folder. (str)
+- rs_models_dir         : Path to folder containing rosetta designed models. (str)
+- rs_model_binder_chain : Rosetta model binder chain ID. (str)
+- af_model_binder_chain : AlphaFold2 model chain ID. (str)
+
+**output folders:**
+- af2_monomer_pred_analysis : Folder containing the AlphaFold2 predictions analysis.
+- aligned_models            : Folder containing aligned AlphaFold2 to Rosetta binder models.
+- sel_designs               : Folder containing the filter passing AlphaFold2 models.
+
+**output files:**
+- af2_monomer_all_decoys_analyzed.csv          : File containing the scores for all AlphaFold2 predictions.
+- af2_monomer_all_analyzed_decoys_averaged.csv : File containing the averaged scores for all AlphaFold2 predictions. Here we averaged the scores of the 5 AlphaFold2 models for a given sequence.
+- af2_monomer_best_decoys.csv                  : File containig the scores of the AlphaFold2 best models, the ones passing the pLDDT threshold.
+- af2_monomer_folded_decoys_rmsd.csv           : File containing the C⍺ RMSD to model values for the AlphaFold2 best models.
+- af2_monomer_filtered_decoys_by_rmsd.csv      : File containing the C⍺ RMSD to model values for the AlphaFold2 models passing the C⍺ RMSD to model threshold.
+- af_monomer_selection.csv                     : File containing the ProteinMPNN, AlphaFold2 and sequence properties of passing designs.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+  

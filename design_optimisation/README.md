@@ -1,12 +1,12 @@
 ## Execution scripts for running the oprimisation pipeline 
 *The scriptts are setup to run the pipeline on CPU / GPU clusters using SLURM as task manager*
 
-Software to install: 
+**Software to install:** 
 - ProteinMPNN (https://github.com/dauparas/ProteinMPNN.git)
 - ColbFold    (https://github.com/sokrypton/ColabFold.git)
 - ColabDesign (https://github.com/sokrypton/ColabDesign.git)
 
-Packages to install:
+**Packages to install:**
 - Biopython
 - numpy
 - pandas

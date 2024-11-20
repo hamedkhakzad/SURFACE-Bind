@@ -15,7 +15,7 @@
 - matplotlib
 
 -----------------------------------------------------------------------------------------------------------------------------------------
-## Run ProteinMPNN optimisation 
+## I. Run ProteinMPNN optimisation 
 *Provided example scripts for each setting: 01-scaffold optimisation while fixing the interacting residues, and 02-full binder design* \
 *Run on CPU cluster with SLURM managment system*
 
@@ -49,7 +49,7 @@ These parameters were kept, for modifying them, you need to alter them in the SL
 - Avoid "_" and "x" in naming the rosetta models as they are part of string splitting and identification throughout the pipeline. 
 
 -----------------------------------------------------------------------------------------------------------------------------------------
-## Run AlphaFold2 assessment of optimised sequences in-silico folding  
+## II. Run AlphaFold2 assessment of optimised sequences in-silico folding  
 *This step predicts the design sequence only in "single sequence" mode* \
 *Provided example script: 03_run_af_monomer.sh* \
 *Run on GPU cluster with SLURM managment system*
@@ -73,7 +73,7 @@ These parameters were kept, for modifying them, you need to alter them in the SL
 - {DATE}_pmpnn_scores.png (.svg) : Plotting ProteinMPNN scores for the optimised sequences, Selected sequences (Coloured), All sequences (Gray).
 
 -----------------------------------------------------------------------------------------------------------------------------------------
-## Filtering AlphaFold2 predictions
+## III. Filtering AlphaFold2 predictions
 *This step filters the AlphaFold2 predictions based on pLDDT (Default >= 80) and C⍺ RMSD to model (Default <= 1.5)* \
 *Provided example script: 04_run_af_monomer_analysis.sh* \
 *Run on CPU cluster, inteactive*

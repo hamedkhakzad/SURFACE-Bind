@@ -30,6 +30,8 @@ def create_parser():
     parse.add_argument("--rs_models_dir",          type=str,   nargs=1,  required=True,  help="Path to folder containing rosetta designed models.")
     parse.add_argument("--rs_model_binder_chain",  type=str,   nargs=1,  required=True,  help="Rosetta model binder chain ID.")
     parse.add_argument("--af_model_binder_chain",  type=str,   nargs=1,  required=True,  help="AlphaFold2 model chain ID.")
+    parse.add_argument("--pLDDT_thresh"         ,  type=float, nargs=1,  required=False, help="pLDDT threshold for filtering, Default 80.")
+    parse.add_argument("--RMSD_thresh"          ,  type=float, nargs=1,  required=False, help="C⍺ RMSD to model threshold for filtering, Default 1.5Å.")
     return parse
 
 def parse_args(parser):

@@ -15,7 +15,7 @@
 - seaborn
 
 ------------------------------------------------------------------------------------------------------------------------------------------
-## Run ProteinMPNN optimisation 
+## Run ProteinMPNN optimisation \
 *provided example scripts for each setting: 01-scaffold optimisation while fixing the interacting residues, and 02-full binder design*
 
-*Flags: *
+**Flags:**

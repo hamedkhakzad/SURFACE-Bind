@@ -18,8 +18,8 @@ def create_parser():
     """
     parse = argparse.ArgumentParser()
     
-    parse.add_argument("--mpnn_folder" ,   type=str,   nargs=1,  required=True,  help="Path to folder containing MPNN run outputs.")
-    parse.add_argument("--num_of_seqs" ,   type=int,   nargs=1,  required=True,  help="Number of MPNN sequences to fold.")
+    parse.add_argument("--mpnn_folder" ,   type=str,   nargs=1,  required=True,  help="Path to ProteinMPNN run output folder.")
+    parse.add_argument("--num_of_seqs" ,   type=int,   nargs=1,  required=True,  help="Number of unique optimised sequences to predict per design based on ProteinMPNN global score")
     parse.add_argument("--path_to_conda" , type=str,   nargs=1,  required=True,  help="Path to source conda.sh.")
     parse.add_argument("--path_to_env" ,   type=str,   nargs=1,  required=True,  help="Path to activate conda environment.")
 

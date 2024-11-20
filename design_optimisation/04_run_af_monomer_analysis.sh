@@ -6,4 +6,6 @@
 python /work/lpdi/users/asadek/scaffold_opt_project/scripts/src/run_af2_monomer_analysis.py --mpnn_folder {Path to folder containing MPNN run outputs, e.g., "./sol_mpnn_fixed_interface/"} \
                                                                                             --rs_models_dir {Path to folder containing rosetta models} \
                                                                                             --rs_model_binder_chain 'B' \
-                                                                                            --af_model_binder_chain 'A'
+                                                                                            --af_model_binder_chain 'A' \
+                                                                                            --pLDDT_thresh 80.0 \
+                                                                                            --RMSD_thresh 1.5 

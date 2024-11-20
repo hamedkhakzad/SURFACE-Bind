@@ -223,6 +223,16 @@ def main():
     rs_binder_chain = args.rs_model_binder_chain[0]
     af2_binder_chain = args.af_model_binder_chain[0]
 
+    if args.pLDDT_thresh != None:
+        pLDDT_thresh = float(args.pLDDT_thresh[0])
+    else:
+        pLDDT_thresh = 80.0
+
+    if args.RMSD_thresh != None:
+        RMSD_thresh = float(args.RMSD_thresh[0])
+    else:
+        RMSD_thresh = 1.5
+
     #### Get the Needed Paths ####
 
     ##### path to the rosetta models
@@ -262,7 +272,7 @@ def main():
     print(f'{df_avg.shape[0]} averaged decoys')
 
     # filter binders based on ptm and binder plddt
-    df_sel01 = df_avg[(df_avg.avg_binder_mean_plddt >= 80.)]
+    df_sel01 = df_avg[(df_avg.avg_binder_mean_plddt >= pLDDT_thresh)]
     df_sel01.sort_values(by='avg_binder_mean_plddt', ascending=False, inplace=True)
     df_sel01.reset_index(drop=1, inplace=True)
     df_sel01.to_csv(f'{output}/af2_monomer_best_decoys.csv')
@@ -303,7 +313,7 @@ def main():
     df_rmsd.to_csv(os.path.join(output, "af2_monomer_folded_decoys_rmsd.csv")
 
     # select promising sequences that folded correctly with CA RMSD <= 1.5
-    df_sel02 = df_rmsd[(df_rmsd.binder_rmsd <= 1.5)].sort_values(by='binder_rmsd', ascending=1).reset_index(drop=True)
+    df_sel02 = df_rmsd[(df_rmsd.binder_rmsd <= RMSD_thresh)].sort_values(by='binder_rmsd', ascending=1).reset_index(drop=True)
     df_sel02['label'] = df_sel02['af2_model'].apply(lambda x: f'>{x.split("_unrelaxed")[0]}')
     df_sel02.drop(columns=['design'], inplace=True)
     df_sel02.to_csv(os.path.join(output,"af2_monomer_filtered_decoys_by_rmsd.csv")

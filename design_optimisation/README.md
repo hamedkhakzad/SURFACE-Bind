@@ -7,5 +7,9 @@ Software to install:
 - ColabDesign (https://github.com/sokrypton/ColabDesign.git)
 
 Packages to install:
-- Biopython  - numpy  - pandas  - scipy
-- matplotlib  - seaborn
+- Biopython
+- numpy
+- pandas
+- scipy
+- matplotlib
+- seaborn

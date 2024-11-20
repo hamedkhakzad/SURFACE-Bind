@@ -3,7 +3,7 @@
 
 **Software to install:** 
 - ProteinMPNN (https://github.com/dauparas/ProteinMPNN.git)
-- ColbFold    (https://github.com/sokrypton/ColabFold.git)
+- ColabFold   (https://github.com/sokrypton/ColabFold.git)
 - ColabDesign (https://github.com/sokrypton/ColabDesign.git)
 
 **Packages to install:**

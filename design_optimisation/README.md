@@ -42,3 +42,11 @@
 - the execution files are simply run using "source 01_run_sol_mpnn_fh.sh". 
 
 -----------------------------------------------------------------------------------------------------------------------------------------
+## Run AlphaFold2 assessment of optimised sequences in silico folding  
+*provided example script: 03_run_af_monomer.sh*
+
+**Flags:**
+- mpnn_folder : Path to ProteinMPNN run output folder. (str)
+- num_of_seqs : Number of optimised sequences to fold per design. (int)
+- path_to_conda         : Path to source "conda.sh" file.     (str)
+- path_to_env           : Path to activate conda environment. (str)

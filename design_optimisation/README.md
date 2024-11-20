@@ -97,5 +97,7 @@ These parameters were kept, for modifying them, you need to alter them in the SL
 - af2_monomer_filtered_decoys_by_rmsd.csv      : File containing the C⍺ RMSD to model values for the AlphaFold2 models passing the C⍺ RMSD to model threshold.
 - af_monomer_selection.csv                     : File containing the ProteinMPNN, AlphaFold2 and sequence properties of passing designs.
 
+**remarks:** \
+pLDDT and C⍺ RMSD to model, modifications to the source script "run_af2_monomer_analysis.py" needs to be made in lines 263 and 304 respectively 
 -----------------------------------------------------------------------------------------------------------------------------------------
   

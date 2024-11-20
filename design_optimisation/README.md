@@ -39,9 +39,9 @@
 **output files:**
 - all_sol_mpnn_input_des_paths_design_interface.txt : file containing the paths for all ProteinMPNN inputs.
 
-**remarks:**
-These parameters were kept, for modifying them, you need to alter them in the SLURM file writing part inside "run_sol_mpnn_opt.py" script
---sampling_temp "0.1"  --seed 37  --batch_size 1
+**remarks:** \
+These parameters were kept, for modifying them, you need to alter them in the SLURM file writing part inside "run_sol_mpnn_opt.py" script \
+" --sampling_temp "0.1"  --seed 37  --batch_size 1 "
 
 **recommendations for running the script:**
 - Prepare the run folder and copy the excution scripts to it.

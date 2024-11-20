@@ -309,16 +309,20 @@ def main():
     # Add the binder RMSD information to the selected designs
     df_merged01 = pd.merge(left=df_sel01, right=df_sel02, on='label', how='inner')
     df_merged01.reset_index(drop=True, inplace=True)
-    df_merged01.to_csv(os.path.join(output, "af_monomer_selection.csv"))
-
-    # seperate the selected designs 
-    for model in tqdm(df_merged01.af2_model, desc='Copying'):
-        shutil.copy(f'{rmsd_out}/{model}.pdb', f'{sel_des_out}/{model}.pdb')
 
     # load the MPNN info 
     df_info = pd.read_csv(mpnn_sc, index_col=0).rename(columns={'design':'label'})
     df_merged02 = pd.merge(left=df_info, right=df_merged01, on='label', how='inner')
-    df_merged02.to_csv(os.path.join(output, "af2_monomer_filtered_decoys_by_rmsd_info.csv")
+
+    # calculate the sequence properties
+    df_prop = binder_properties_calculator_from_df(df_prop=df_merged02, sequence_column="sequence")
+    df_prop['design_strategy'] = os.path.basename(root_folder).split('mpnn_')[-1]
+    df_prop.to_csv(os.path.join(output, "af_monomer_selection.csv"))
+
+    # seperate the selected designs 
+    for model in tqdm(df_merged02.af2_model, desc='Copying selected AF2 models'):
+        shutil.copy(f'{rmsd_out}/{model}.pdb', f'{sel_des_out}/{model}.pdb')
+
         
     return None
 

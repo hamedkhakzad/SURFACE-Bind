@@ -8,7 +8,7 @@
 
 **Packages to install:**
 - scipy
-- numpyall_sol_mpnn_designs
+- numpy
 - pandas
 - seaborn
 - Biopython

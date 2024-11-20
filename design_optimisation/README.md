@@ -101,7 +101,7 @@ These parameters were kept, for modifying them, you need to alter them in the SL
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 ## IV. Interface quality assessment using AlphaFold2
-*This step filters the selected optimised designs based on ipTM (Default >= 0.7) \
+*This step filters the selected optimised designs based on ipTM (Default >= 0.7)* \
 *Provided example notebook: 05_reperdict_sequences_with_AF2_and_parital_templates.ipynb* \
 *Run on GPU cluster, inteactive*
 

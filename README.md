@@ -11,6 +11,7 @@ This project is developed through collaborations between EPFL, Novo Nordisk, and
 Please see the License file.
 
 ## Citations
+```bibtex
 @article{balbi2024mapping,
   title={Mapping targetable sites on the human surfaceome for the design of novel binders},
   author={Balbi, Petra EM and Sadek, Ahmed and Marchand, Anthony and Yu, Ta-Yi and Damjanovic, Jovan and Georgeon, Sandrine and Schmidt, Joseph and Fulle, Simone and Yang, Che and Khakzad, Hamed and others},
@@ -19,3 +20,4 @@ Please see the License file.
   year={2024},
   publisher={Cold Spring Harbor Laboratory}
 }
+```
